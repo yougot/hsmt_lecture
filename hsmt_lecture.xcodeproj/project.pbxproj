@@ -25,6 +25,7 @@
 		A62D608717ACCA480002E1E9 /* nu_buta.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A62D608617ACCA480002E1E9 /* nu_buta.jpg */; };
 		A62D608A17ACCAEA0002E1E9 /* HLSpaceAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A62D608917ACCAEA0002E1E9 /* HLSpaceAddViewController.m */; };
 		A62D608D17ACE6740002E1E9 /* HLProjetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A62D608C17ACE6740002E1E9 /* HLProjetsViewController.m */; };
+		A62D609017ACF0CE0002E1E9 /* HLServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A62D608F17ACF0CE0002E1E9 /* HLServerManager.m */; };
 		CFBC1148C1DD40B4B1D0F47D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 275229EC1D1E40B2BF4FED6D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,8 @@
 		A62D608917ACCAEA0002E1E9 /* HLSpaceAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSpaceAddViewController.m; sourceTree = "<group>"; };
 		A62D608B17ACE6740002E1E9 /* HLProjetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLProjetsViewController.h; sourceTree = "<group>"; };
 		A62D608C17ACE6740002E1E9 /* HLProjetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLProjetsViewController.m; sourceTree = "<group>"; };
+		A62D608E17ACF0CE0002E1E9 /* HLServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLServerManager.h; sourceTree = "<group>"; };
+		A62D608F17ACF0CE0002E1E9 /* HLServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLServerManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				A62D606617ACBC1A0002E1E9 /* HLAppDelegate.h */,
 				A62D606717ACBC1A0002E1E9 /* HLAppDelegate.m */,
 				A62D606F17ACBC1A0002E1E9 /* MainStoryboard.storyboard */,
+				A62D608E17ACF0CE0002E1E9 /* HLServerManager.h */,
+				A62D608F17ACF0CE0002E1E9 /* HLServerManager.m */,
 				A62D607217ACBC1A0002E1E9 /* HLViewController.h */,
 				A62D607317ACBC1A0002E1E9 /* HLViewController.m */,
 				A62D607A17ACBD6D0002E1E9 /* HLTopViewController.h */,
@@ -254,6 +259,7 @@
 				A62D608517ACBFEE0002E1E9 /* Space.m in Sources */,
 				A62D608A17ACCAEA0002E1E9 /* HLSpaceAddViewController.m in Sources */,
 				A62D608D17ACE6740002E1E9 /* HLProjetsViewController.m in Sources */,
+				A62D609017ACF0CE0002E1E9 /* HLServerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

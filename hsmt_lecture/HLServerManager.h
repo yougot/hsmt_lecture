@@ -1,17 +1,21 @@
 //
-//  HLProjetsViewController.h
+//  HLServerManager.h
 //  hsmt_lecture
 //
 //  Created by 岡本 豊 on 2013/08/03.
 //  Copyright (c) 2013年 karakurimono. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
+#import <Foundation/Foundation.h>
+#import <XMLRPC.h>
 #import "Space.h"
 
-@interface HLProjetsViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface HLServerManager : NSObject <XMLRPCConnectionDelegate>
+
++ (HLServerManager *)sharedInstance;
 
 @property (nonatomic, strong) Space *space;
+
+- (void)getProjets;
 
 @end

@@ -8,8 +8,8 @@
 
 #import "HLProjetsViewController.h"
 #import "Project.h"
+#import "HLServerManager.h"
 #import <NLCoreData.h>
-#import <SVProgressHUD.h>
 
 @interface HLProjetsViewController ()
 @property (nonatomic, strong) NSFetchedResultsController *fetchedRC;
@@ -56,15 +56,8 @@
     
     // XMLRequest
     {
-        NSString *urlString = [NSString stringWithFormat:@"https://%@.backlog.jp/XML-RPC", self.space.name];
-        NSURL *URL = [NSURL URLWithString:urlString];
-        XMLRPCRequest *request = [[XMLRPCRequest alloc] initWithURL: URL];
-        [request setMethod: @"backlog.getProjects" withParameter:nil];
-        
-        XMLRPCConnectionManager *manager = [XMLRPCConnectionManager sharedManager];
-        [manager spawnConnectionWithXMLRPCRequest: request delegate: self];
-        
-        [SVProgressHUD showWithStatus:@"取得中" maskType:SVProgressHUDMaskTypeGradient];
+        [HLServerManager sharedInstance].space = self.space;
+        [[HLServerManager sharedInstance] getProjets];
     }
     
 }
@@ -73,38 +66,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - XML RPC delegate
-
-- (BOOL)request:(XMLRPCRequest *)request canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
-{
-    return YES;
-}
-
-- (void)request:(XMLRPCRequest *)request didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-{
-    if ([challenge proposedCredential]) {
-        // do nothing
-    } else {
-        NSURLCredential *credential = [NSURLCredential credentialWithUser:self.space.userName
-                                                                 password:self.space.password
-                                                              persistence:NSURLCredentialPersistenceNone];
-        [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
-    }
-}
-
-- (void)request: (XMLRPCRequest *)request didReceiveResponse: (XMLRPCResponse *)response {
-    if ([response isFault]) {
-        NSLog(@"Fault code: %@", [response faultCode]);
-        
-        NSLog(@"Fault string: %@", [response faultString]);
-    } else {
-        NSLog(@"Parsed response: %@", [response object]);
-    }
-    
-    NSLog(@"Response body: %@", [response body]);
-    [SVProgressHUD showSuccessWithStatus:@"完了"];
 }
 
 #pragma mark - Table view data source
