@@ -7,6 +7,8 @@
 //
 
 #import "HLSpaceAddViewController.h"
+#import <NLCoreData.h>
+#import "Space.h"
 
 @interface HLSpaceAddViewController ()
 
@@ -27,7 +29,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.spaceName.text = @"スペースネームをいれてください";
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,6 +38,11 @@
 }
 
 - (IBAction)didTapDoneButton:(id)sender {
+    Space *space = [Space insert];
+    space.name = self.spaceName.text;
+    space.userName = self.userName.text;
+    space.password = self.password.text;
+    [[NSManagedObjectContext mainContext] saveNested];
 }
 
 @end

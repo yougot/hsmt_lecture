@@ -7,12 +7,14 @@
 //
 
 #import "HLAppDelegate.h"
+#import <NLCoreData.h>
 
 @implementation HLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [[NLCoreData shared] setModelName:@"hsmt_lecture"];
     return YES;
 }
 							
