@@ -48,6 +48,7 @@
         self.fetchedRC = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                              managedObjectContext:[NSManagedObjectContext mainContext]
                                                                sectionNameKeyPath:nil cacheName:nil];
+        self.fetchedRC.delegate = self;
         NSError *error = nil;
         if (![self.fetchedRC performFetch:&error]) {
             NSLog(@"%@", error);
@@ -83,12 +84,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"ProjectsCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    Project *project = [self.fetchedRC objectAtIndexPath:indexPath];
+    cell.textLabel.text = project.name;
 }
 
 /*
@@ -142,5 +149,64 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
+
+#pragma mark - FetchedRC Delegate
+
+#pragma mark - NSFetchedResultController delegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+	[self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = self.tableView;
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+			[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationTop];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationTop];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationTop];
+			[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationTop];
+            break;
+    }
+    
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch(type)
+	{
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationTop];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationTop];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+	[self.tableView endUpdates];
+}
+
 
 @end

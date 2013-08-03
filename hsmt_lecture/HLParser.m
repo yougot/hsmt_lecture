@@ -41,11 +41,11 @@ static HLParser *_sharedInstance;
     NSString *spaceName = nil;
     for (NSDictionary *object in notification.object)
     {
-        NSString *project_id = object[@"project_id"];
+        NSNumber *project_id = @(((NSString *)object[@"id"]).intValue);
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"project_id=%@", project_id];
         
         Project *project = [Project fetchOrInsertSingleWithPredicate:predicate];
-        project.project_id = @(project_id.integerValue);
+        project.project_id = project_id;
         project.name       = object[@"name"];
         project.key        = object[@"key"];
         project.url        = object[@"url"];

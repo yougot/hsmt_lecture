@@ -7,7 +7,6 @@
 //
 
 #import "HLServerManager.h"
-#import <SVProgressHUD.h>
 
 @implementation HLServerManager
 
@@ -57,12 +56,9 @@ static HLServerManager *_sharedInstance;
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:request.method object:response.object];
-
-    [SVProgressHUD showSuccessWithStatus:@"完了"];
 }
 
 - (void)request:(XMLRPCRequest *)request didFailWithError:(NSError *)error {
-    [SVProgressHUD showErrorWithStatus:@"失敗"];
     NSLog(@"%@", error);
 }
 
@@ -81,8 +77,6 @@ static HLServerManager *_sharedInstance;
 
     XMLRPCConnectionManager *manager = [XMLRPCConnectionManager sharedManager];
     [manager spawnConnectionWithXMLRPCRequest: request delegate: self];
-    
-    [SVProgressHUD showWithStatus:@"取得中" maskType:SVProgressHUDMaskTypeGradient];
 }
 
 #pragma mark - public method
