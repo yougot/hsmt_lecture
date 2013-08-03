@@ -7,9 +7,11 @@
 //
 
 #import "HLTopViewController.h"
+#import <NLCoreData.h>
+#import "Space.h"
 
 @interface HLTopViewController ()
-
+@property (nonatomic, strong) NSFetchedResultsController *fetchedRC;
 @end
 
 @implementation HLTopViewController
@@ -32,6 +34,17 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntity:[Space class]];
+    [request sortByKey:@"name" ascending:YES];
+    
+    self.fetchedRC = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                         managedObjectContext:[NSManagedObjectContext mainContext]
+                                                           sectionNameKeyPath:nil cacheName:nil];
+    NSError *error = nil;
+    if (![self.fetchedRC performFetch:&error]) {
+        NSLog(@"%@", error);
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,24 +57,26 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return self.fetchedRC.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    id <NSFetchedResultsSectionInfo> sectionInfo = self.fetchedRC.sections[section];
+    return sectionInfo.numberOfObjects;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"HLTopCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    Space *space = [self.fetchedRC objectAtIndexPath:indexPath];
+    UILabel *label = (UILabel *)[cell viewWithTag:1];
+    label.text = space.name;
     
     return cell;
 }

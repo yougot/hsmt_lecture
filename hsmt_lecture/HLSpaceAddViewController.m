@@ -38,11 +38,14 @@
 }
 
 - (IBAction)didTapDoneButton:(id)sender {
+    
     Space *space = [Space insert];
     space.name = self.spaceName.text;
     space.userName = self.userName.text;
     space.password = self.password.text;
     [[NSManagedObjectContext mainContext] saveNested];
+    
+    [self performSegueWithIdentifier:@"unWindDone" sender:self];
 }
 
 @end

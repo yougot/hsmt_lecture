@@ -28,14 +28,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="e7l-wn-g1Z">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HLTopCell" id="e7l-wn-g1Z">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTD-gh-lBV">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="285" id="SEp-IQ-4MY"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="CTD-gh-lBV" firstAttribute="top" secondItem="e7l-wn-g1Z" secondAttribute="top" constant="11" id="ApU-Mp-KN3"/>
+                                    <constraint firstItem="CTD-gh-lBV" firstAttribute="leading" secondItem="e7l-wn-g1Z" secondAttribute="leading" constant="20" type="default" id="NmZ-e4-kLf"/>
+                                </constraints>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -65,15 +79,15 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mgk-vM-EA7">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xD4-H4-TmN">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3ym-GF-O0w">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Space Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gj6-ne-iKE">
                                 <constraints>
@@ -102,23 +116,23 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="xD4-H4-TmN" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="1Er-pn-rYD"/>
-                            <constraint firstAttribute="trailing" secondItem="q7A-G5-0VY" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="1zi-v6-aIe"/>
                             <constraint firstItem="gj6-ne-iKE" firstAttribute="leading" secondItem="NrF-PQ-Pg8" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="6sy-LU-hpD"/>
                             <constraint firstItem="xD4-H4-TmN" firstAttribute="leading" secondItem="mgk-vM-EA7" secondAttribute="leading" type="default" id="8Yy-Wc-sH5"/>
+                            <constraint firstItem="gj6-ne-iKE" firstAttribute="top" secondItem="NrF-PQ-Pg8" secondAttribute="top" constant="24" id="Anc-eM-uG5"/>
+                            <constraint firstAttribute="trailing" secondItem="q7A-G5-0VY" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="BNP-Ez-jE6"/>
                             <constraint firstItem="xD4-H4-TmN" firstAttribute="leading" secondItem="3ym-GF-O0w" secondAttribute="leading" type="default" id="GfU-bf-E2e"/>
-                            <constraint firstItem="mgk-vM-EA7" firstAttribute="top" secondItem="NrF-PQ-Pg8" secondAttribute="top" constant="251" id="KqV-NM-DOR"/>
                             <constraint firstAttribute="trailing" secondItem="3ym-GF-O0w" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="OR5-FE-m5S"/>
-                            <constraint firstItem="q7A-G5-0VY" firstAttribute="top" secondItem="NrF-PQ-Pg8" secondAttribute="top" constant="20" symbolic="YES" type="default" id="OXP-PN-H1D"/>
-                            <constraint firstAttribute="bottom" secondItem="gj6-ne-iKE" secondAttribute="bottom" constant="228" id="S4B-nN-mxR"/>
-                            <constraint firstItem="q7A-G5-0VY" firstAttribute="leading" secondItem="NrF-PQ-Pg8" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="UMU-2j-w2h"/>
+                            <constraint firstItem="DPF-ok-szC" firstAttribute="top" secondItem="NrF-PQ-Pg8" secondAttribute="top" constant="100" id="RCa-KU-DSS"/>
                             <constraint firstItem="DPF-ok-szC" firstAttribute="leading" secondItem="NrF-PQ-Pg8" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Yy7-ms-kGV"/>
                             <constraint firstItem="mgk-vM-EA7" firstAttribute="leading" secondItem="gj6-ne-iKE" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ZaQ-6l-b2W"/>
                             <constraint firstItem="EAF-dq-jeH" firstAttribute="leading" secondItem="NrF-PQ-Pg8" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="caN-UH-m7O"/>
                             <constraint firstItem="3ym-GF-O0w" firstAttribute="top" secondItem="xD4-H4-TmN" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="eu5-DB-8yy"/>
                             <constraint firstAttribute="trailing" secondItem="mgk-vM-EA7" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="hNE-Dk-CiT"/>
+                            <constraint firstItem="q7A-G5-0VY" firstAttribute="leading" secondItem="NrF-PQ-Pg8" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="k8k-l5-JVt"/>
                             <constraint firstItem="xD4-H4-TmN" firstAttribute="top" secondItem="mgk-vM-EA7" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="khK-DA-zkT"/>
                             <constraint firstItem="EAF-dq-jeH" firstAttribute="top" secondItem="xD4-H4-TmN" secondAttribute="top" type="default" id="kmn-OC-bj4"/>
-                            <constraint firstAttribute="bottom" secondItem="DPF-ok-szC" secondAttribute="bottom" constant="152" id="oAX-Gr-7KS"/>
+                            <constraint firstItem="mgk-vM-EA7" firstAttribute="top" secondItem="NrF-PQ-Pg8" secondAttribute="top" constant="20" symbolic="YES" type="default" id="m6P-G2-Oj4"/>
+                            <constraint firstItem="q7A-G5-0VY" firstAttribute="top" secondItem="NrF-PQ-Pg8" secondAttribute="top" constant="158" id="o5v-Aa-pHF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7q1-z9-lMp">
@@ -130,7 +144,6 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="1XC-it-AqB">
                             <connections>
                                 <action selector="didTapDoneButton:" destination="0Nn-YV-ZJM" id="Bqs-Gl-0vB"/>
-                                <segue destination="xeV-gP-UXN" kind="unwind" unwindAction="unWindDone:" id="VYc-31-fq7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -138,6 +151,7 @@
                         <outlet property="password" destination="3ym-GF-O0w" id="Jk8-ur-p9j"/>
                         <outlet property="spaceName" destination="mgk-vM-EA7" id="wtu-C6-Icn"/>
                         <outlet property="userName" destination="xD4-H4-TmN" id="g2f-Rl-8a9"/>
+                        <segue destination="xeV-gP-UXN" kind="unwind" identifier="unWindDone" unwindAction="unWindDone:" id="zcK-H2-DaB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EDQ-Zd-TcY" userLabel="First Responder" sceneMemberID="firstResponder"/>
