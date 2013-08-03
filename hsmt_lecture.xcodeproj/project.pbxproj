@@ -24,6 +24,7 @@
 		A62D608517ACBFEE0002E1E9 /* Space.m in Sources */ = {isa = PBXBuildFile; fileRef = A62D608417ACBFEE0002E1E9 /* Space.m */; };
 		A62D608717ACCA480002E1E9 /* nu_buta.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A62D608617ACCA480002E1E9 /* nu_buta.jpg */; };
 		A62D608A17ACCAEA0002E1E9 /* HLSpaceAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A62D608917ACCAEA0002E1E9 /* HLSpaceAddViewController.m */; };
+		A62D608D17ACE6740002E1E9 /* HLProjetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A62D608C17ACE6740002E1E9 /* HLProjetsViewController.m */; };
 		CFBC1148C1DD40B4B1D0F47D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 275229EC1D1E40B2BF4FED6D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,8 @@
 		A62D608617ACCA480002E1E9 /* nu_buta.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nu_buta.jpg; sourceTree = "<group>"; };
 		A62D608817ACCAEA0002E1E9 /* HLSpaceAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSpaceAddViewController.h; sourceTree = "<group>"; };
 		A62D608917ACCAEA0002E1E9 /* HLSpaceAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSpaceAddViewController.m; sourceTree = "<group>"; };
+		A62D608B17ACE6740002E1E9 /* HLProjetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLProjetsViewController.h; sourceTree = "<group>"; };
+		A62D608C17ACE6740002E1E9 /* HLProjetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLProjetsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,8 @@
 				A62D607317ACBC1A0002E1E9 /* HLViewController.m */,
 				A62D607A17ACBD6D0002E1E9 /* HLTopViewController.h */,
 				A62D607B17ACBD6D0002E1E9 /* HLTopViewController.m */,
+				A62D608B17ACE6740002E1E9 /* HLProjetsViewController.h */,
+				A62D608C17ACE6740002E1E9 /* HLProjetsViewController.m */,
 				A62D608817ACCAEA0002E1E9 /* HLSpaceAddViewController.h */,
 				A62D608917ACCAEA0002E1E9 /* HLSpaceAddViewController.m */,
 				A62D607D17ACBDE80002E1E9 /* hsmt_lecture.xcdatamodeld */,
@@ -248,6 +253,7 @@
 				A62D608217ACBFED0002E1E9 /* Project.m in Sources */,
 				A62D608517ACBFEE0002E1E9 /* Space.m in Sources */,
 				A62D608A17ACCAEA0002E1E9 /* HLSpaceAddViewController.m in Sources */,
+				A62D608D17ACE6740002E1E9 /* HLProjetsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

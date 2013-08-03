@@ -1,21 +1,18 @@
 //
-//  HLTopViewController.m
+//  HLProjetsViewController.m
 //  hsmt_lecture
 //
 //  Created by 岡本 豊 on 2013/08/03.
 //  Copyright (c) 2013年 karakurimono. All rights reserved.
 //
 
-#import "HLTopViewController.h"
-#import <NLCoreData.h>
-#import "Space.h"
 #import "HLProjetsViewController.h"
 
-@interface HLTopViewController ()
-@property (nonatomic, strong) NSFetchedResultsController *fetchedRC;
+@interface HLProjetsViewController ()
+
 @end
 
-@implementation HLTopViewController
+@implementation HLProjetsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -35,17 +32,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntity:[Space class]];
-    [request sortByKey:@"name" ascending:YES];
-    
-    self.fetchedRC = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                         managedObjectContext:[NSManagedObjectContext mainContext]
-                                                           sectionNameKeyPath:nil cacheName:nil];
-    NSError *error = nil;
-    if (![self.fetchedRC performFetch:&error]) {
-        NSLog(@"%@", error);
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,26 +44,24 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return self.fetchedRC.sections.count;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    id <NSFetchedResultsSectionInfo> sectionInfo = self.fetchedRC.sections[section];
-    return sectionInfo.numberOfObjects;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"HLTopCell";
+    static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    Space *space = [self.fetchedRC objectAtIndexPath:indexPath];
-    UILabel *label = (UILabel *)[cell viewWithTag:1];
-    label.text = space.name;
     
     return cell;
 }
@@ -132,22 +116,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-}
-
-#pragma mark - segue method
-
-- (IBAction)unWindCancel:(UIStoryboardSegue *)sender {}
-- (IBAction)unWindDone:(UIStoryboardSegue *)sender {}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"SelectedSpaceSegue"])
-    {
-        HLProjetsViewController *vc = segue.destinationViewController;
-
-        NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
-        vc.space = [self.fetchedRC objectAtIndexPath:indexPath];
-    }
 }
 
 @end

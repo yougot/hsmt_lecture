@@ -1,10 +1,16 @@
 PODS:
   - NLCoreData (0.4.15)
+  - NSData+Base64 (1.0.0)
+  - xmlrpc (2.3.3):
+    - NSData+Base64 (~> 1.0.0)
 
 DEPENDENCIES:
   - NLCoreData
+  - xmlrpc
 
 SPEC CHECKSUMS:
   NLCoreData: d8cbf1f8a71218c1907289d26717b7dd4d685b28
+  NSData+Base64: 36c4e5b6479259c1a68866ccd2a8dd385c9744f7
+  xmlrpc: 9ebaa6298ce90ff0c3c30404681f2030bdde54db
 
 COCOAPODS: 0.20.2
