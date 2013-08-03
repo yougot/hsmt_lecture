@@ -55,10 +55,8 @@
     }
     
     // XMLRequest
-    {
-        [HLServerManager sharedInstance].space = self.space;
-        [[HLServerManager sharedInstance] getProjets];
-    }
+    [HLServerManager sharedInstance].space = self.space;
+    [[HLServerManager sharedInstance] getProjets];
     
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "HLAppDelegate.h"
+#import "HLParser.h"
 #import <NLCoreData.h>
 
 @implementation HLAppDelegate
@@ -15,6 +16,7 @@
 {
     // Override point for customization after application launch.
     [[NLCoreData shared] setModelName:@"hsmt_lecture"];
+    [HLParser sharedInstance];
     return YES;
 }
 							

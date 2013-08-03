@@ -42,6 +42,11 @@ static HLServerManager *_sharedInstance;
     }
 }
 
+- (void)request: (XMLRPCRequest *)request didCancelAuthenticationChallenge: (NSURLAuthenticationChallenge *)challenge
+{
+    
+}
+
 - (void)request: (XMLRPCRequest *)request didReceiveResponse: (XMLRPCResponse *)response {
     if ([response isFault]) {
         NSLog(@"Fault code: %@", [response faultCode]);
@@ -51,7 +56,8 @@ static HLServerManager *_sharedInstance;
         NSLog(@"Parsed response: %@", [response object]);
     }
     
-    NSLog(@"Response body: %@", [response body]);
+    [[NSNotificationCenter defaultCenter] postNotificationName:request.method object:response.object];
+
     [SVProgressHUD showSuccessWithStatus:@"完了"];
 }
 

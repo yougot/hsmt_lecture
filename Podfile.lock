@@ -1,4 +1,5 @@
 PODS:
+  - GDataXML-HTML (1.1.0)
   - NLCoreData (0.4.15)
   - NSData+Base64 (1.0.0)
   - SVProgressHUD (0.9)
@@ -6,11 +7,13 @@ PODS:
     - NSData+Base64 (~> 1.0.0)
 
 DEPENDENCIES:
+  - GDataXML-HTML
   - NLCoreData
   - SVProgressHUD
   - xmlrpc
 
 SPEC CHECKSUMS:
+  GDataXML-HTML: 281ea772a286241f860fa152cff5c7a7cd817336
   NLCoreData: d8cbf1f8a71218c1907289d26717b7dd4d685b28
   NSData+Base64: 36c4e5b6479259c1a68866ccd2a8dd385c9744f7
   SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
