@@ -7,9 +7,12 @@
 //
 
 #import "HLProjetsViewController.h"
+#import "Project.h"
+#import <NLCoreData.h>
+#import <SVProgressHUD.h>
 
 @interface HLProjetsViewController ()
-
+@property (nonatomic, strong) NSFetchedResultsController *fetchedRC;
 @end
 
 @implementation HLProjetsViewController
@@ -32,6 +35,38 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // NSFetchedResult Controller のセットアップ
+    {
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntity:[Project class]];
+        [request sortByKey:@"project_id" ascending:YES];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"space.name=%@", self.space.name];
+        NSLog(@"%@", predicate);
+        [request setPredicate:predicate];
+        
+        self.fetchedRC = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                             managedObjectContext:[NSManagedObjectContext mainContext]
+                                                               sectionNameKeyPath:nil cacheName:nil];
+        NSError *error = nil;
+        if (![self.fetchedRC performFetch:&error]) {
+            NSLog(@"%@", error);
+        }
+    }
+    
+    // XMLRequest
+    {
+        NSString *urlString = [NSString stringWithFormat:@"https://%@.backlog.jp/XML-RPC", self.space.name];
+        NSURL *URL = [NSURL URLWithString:urlString];
+        XMLRPCRequest *request = [[XMLRPCRequest alloc] initWithURL: URL];
+        [request setMethod: @"backlog.getProjects" withParameter:nil];
+        
+        XMLRPCConnectionManager *manager = [XMLRPCConnectionManager sharedManager];
+        [manager spawnConnectionWithXMLRPCRequest: request delegate: self];
+        
+        [SVProgressHUD showWithStatus:@"取得中" maskType:SVProgressHUDMaskTypeGradient];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,20 +75,51 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - XML RPC delegate
+
+- (BOOL)request:(XMLRPCRequest *)request canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+{
+    return YES;
+}
+
+- (void)request:(XMLRPCRequest *)request didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    if ([challenge proposedCredential]) {
+        // do nothing
+    } else {
+        NSURLCredential *credential = [NSURLCredential credentialWithUser:self.space.userName
+                                                                 password:self.space.password
+                                                              persistence:NSURLCredentialPersistenceNone];
+        [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
+    }
+}
+
+- (void)request: (XMLRPCRequest *)request didReceiveResponse: (XMLRPCResponse *)response {
+    if ([response isFault]) {
+        NSLog(@"Fault code: %@", [response faultCode]);
+        
+        NSLog(@"Fault string: %@", [response faultString]);
+    } else {
+        NSLog(@"Parsed response: %@", [response object]);
+    }
+    
+    NSLog(@"Response body: %@", [response body]);
+    [SVProgressHUD showSuccessWithStatus:@"完了"];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return self.fetchedRC.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchedRC.sections[section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

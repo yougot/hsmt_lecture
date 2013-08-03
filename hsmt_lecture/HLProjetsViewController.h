@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import <XMLRPC.h>
 #import "Space.h"
 
-@interface HLProjetsViewController : UITableViewController
+@interface HLProjetsViewController : UITableViewController <NSFetchedResultsControllerDelegate, XMLRPCConnectionDelegate>
 
 @property (nonatomic, strong) Space *space;
 
